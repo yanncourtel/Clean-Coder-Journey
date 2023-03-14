@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="formtemplate.HelloWorldShould" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-14T09:03:22" hostname="DESKTOP-2SAE808" time="2.047">
+  <properties/>
+  <testcase name="sayHiToJack()" classname="formtemplate.HelloWorldShould" time="2.047"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
