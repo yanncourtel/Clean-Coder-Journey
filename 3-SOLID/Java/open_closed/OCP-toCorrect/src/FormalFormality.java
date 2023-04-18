@@ -1,4 +1,5 @@
 public class FormalFormality {
-
-    private String message = "Good evening, sir.";
+    public String salute() {
+        return "Good evening, sir.";
+    }
 }
