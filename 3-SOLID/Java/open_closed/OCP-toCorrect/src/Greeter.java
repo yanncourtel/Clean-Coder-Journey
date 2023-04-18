@@ -6,7 +6,7 @@ public class Greeter {
 
     public String greet() {
         if (this.formality == "formal") {
-            return new FormalFormality().salute();
+            return "Good evening, sir.";
         }
         else if (this.formality == "casual") {
             return "Sup bro?";
