@@ -1,5 +1,7 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
+import static java.math.RoundingMode.HALF_UP;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -41,5 +43,16 @@ public class Product {
     public BigDecimal getComputedTaxedAmount() {
         return this.price.add(this.getComputedTax())
             .setScale(2, RoundingMode.HALF_UP);
+    }
+
+	public BigDecimal getTaxedAmount(int quantity) {
+        return getComputedTaxedAmount()
+            .multiply(BigDecimal.valueOf(quantity))
+            .setScale(2, HALF_UP);
+	}
+
+    public BigDecimal getTaxAmount(int quantity) {
+        return getComputedTax()
+            .multiply(BigDecimal.valueOf(quantity));
     }
 }

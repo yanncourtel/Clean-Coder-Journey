@@ -8,6 +8,16 @@ public class OrderItem {
     private BigDecimal taxedAmount;
     private BigDecimal tax;
 
+    public OrderItem() {
+    }
+
+    public OrderItem(int quantity, Product product) {
+        setProduct(product);
+        setQuantity(quantity);
+        setTax(product.getTaxAmount(quantity));
+        setTaxedAmount(product.getTaxedAmount(quantity));
+    }
+
     public Product getProduct() {
         return product;
     }

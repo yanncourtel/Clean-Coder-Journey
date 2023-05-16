@@ -85,19 +85,10 @@ public class Order {
             throw new UnknownProductException();
         }
 
-        final BigDecimal unitaryTax = product.getComputedTax();
-        final BigDecimal unitaryTaxedAmount = product.getComputedTaxedAmount();
-        final BigDecimal taxedAmount = unitaryTaxedAmount.multiply(BigDecimal.valueOf(itemRequest.getQuantity())).setScale(2, HALF_UP);
-        final BigDecimal taxAmount = unitaryTax.multiply(BigDecimal.valueOf(itemRequest.getQuantity()));
-
-        final OrderItem orderItem = new OrderItem();
-        orderItem.setProduct(product);
-        orderItem.setQuantity(itemRequest.getQuantity());
-        orderItem.setTax(taxAmount);
-        orderItem.setTaxedAmount(taxedAmount);
+        OrderItem orderItem = new OrderItem(itemRequest.getQuantity(), product);
         getItems().add(orderItem);
 
-        setTotal(getTotal().add(taxedAmount));
-        setTax(getTax().add(taxAmount));
+        setTotal(getTotal().add(orderItem.getTaxedAmount()));
+        setTax(getTax().add(orderItem.getTax()));
     }
 }
