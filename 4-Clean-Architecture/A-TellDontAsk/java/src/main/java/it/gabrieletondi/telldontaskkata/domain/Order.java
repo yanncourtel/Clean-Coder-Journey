@@ -1,8 +1,15 @@
 package it.gabrieletondi.telldontaskkata.domain;
 
+import static java.math.BigDecimal.valueOf;
+import static java.math.RoundingMode.HALF_UP;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import it.gabrieletondi.telldontaskkata.useCase.SellItemRequest;
+import it.gabrieletondi.telldontaskkata.useCase.UnknownProductException;
 
 public class Order {
     private BigDecimal total;
@@ -68,5 +75,28 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void addItem(SellItemRequest itemRequest, ProductCatalog productCatalog) {
+        Product product = productCatalog.getByName(itemRequest.getProductName());
+
+        if (product == null) {
+            throw new UnknownProductException();
+        }
+
+        final BigDecimal unitaryTax = product.getPrice().divide(valueOf(100)).multiply(product.getCategory().getTaxPercentage()).setScale(2, HALF_UP);
+        final BigDecimal unitaryTaxedAmount = product.getPrice().add(unitaryTax).setScale(2, HALF_UP);
+        final BigDecimal taxedAmount = unitaryTaxedAmount.multiply(BigDecimal.valueOf(itemRequest.getQuantity())).setScale(2, HALF_UP);
+        final BigDecimal taxAmount = unitaryTax.multiply(BigDecimal.valueOf(itemRequest.getQuantity()));
+
+        final OrderItem orderItem = new OrderItem();
+        orderItem.setProduct(product);
+        orderItem.setQuantity(itemRequest.getQuantity());
+        orderItem.setTax(taxAmount);
+        orderItem.setTaxedAmount(taxedAmount);
+        getItems().add(orderItem);
+
+        setTotal(getTotal().add(taxedAmount));
+        setTax(getTax().add(taxAmount));
     }
 }
