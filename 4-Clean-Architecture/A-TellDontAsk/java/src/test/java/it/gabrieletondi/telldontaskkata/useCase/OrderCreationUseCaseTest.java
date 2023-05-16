@@ -54,7 +54,7 @@ public class OrderCreationUseCaseTest {
         request.getRequests().add(saladRequest);
         request.getRequests().add(tomatoRequest);
 
-        useCase.run(request);
+        useCase.createOrder(request);
 
         final Order insertedOrder = orderRepository.getSavedOrder();
         assertThat(insertedOrder.getStatus()).isEqualTo(OrderStatus.CREATED);
@@ -82,6 +82,6 @@ public class OrderCreationUseCaseTest {
         unknownProductRequest.setProductName("unknown product");
         request.getRequests().add(unknownProductRequest);
 
-        assertThatThrownBy(() -> useCase.run(request)).isExactlyInstanceOf(UnknownProductException.class);
+        assertThatThrownBy(() -> useCase.createOrder(request)).isExactlyInstanceOf(UnknownProductException.class);
     }
 }
