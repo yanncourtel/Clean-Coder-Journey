@@ -47,7 +47,7 @@ public class StatementPrinter {
 
         totalAmount /= 100;
 
-        totalAmount = (int) calculateTva(totalAmount, invoice.customer.substring(0, 2));
+        totalAmount = (int) Math.round(calculateTva(totalAmount, invoice.customer.substring(0, 2)));
 
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount));
         result += String.format("You earned %s credits\n", volumeCredits);
@@ -55,6 +55,11 @@ public class StatementPrinter {
     }
 
     private static double calculateTva(int amount, String country) {
-        return amount * ((country.equals("FR")) ? 1.055 : 1);
+        return amount * switch (country) {
+            case "BE" -> 1.21;
+            case "FR" -> 1.055;
+            case "LU" -> 1.03;
+            default -> 1;
+        };
     }
 }
