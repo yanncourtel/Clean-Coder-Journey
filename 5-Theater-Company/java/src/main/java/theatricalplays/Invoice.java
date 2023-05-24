@@ -6,6 +6,7 @@ public class Invoice {
 
     public String customer;
     public List<Performance> performances;
+    public int volumeCredits;
 
     public Invoice(String customer, List<Performance> performances) {
         this.customer = customer;

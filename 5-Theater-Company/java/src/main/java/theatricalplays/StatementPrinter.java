@@ -7,13 +7,25 @@ import java.util.Map;
 public class StatementPrinter {
 
     public String print(Invoice invoice, Map<String, Play> plays) {
-        var totalAmount = 0d;
-        var volumeCredits = 0;
-        var result = String.format("Statement for %s\n", invoice.customer);
+        var result = new StringBuilder(String.format("Statement for %s\n", invoice.customer));
 
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
+        var totalAmount = calculateTotalAmount(invoice, plays, result, frmt);
+
+        totalAmount /= 100;
+
+        totalAmount = calculateTva(totalAmount, invoice.customer.substring(0, 2));
+
+        result.append(String.format("Amount owed is %s\n", frmt.format(totalAmount)));
+        result.append(String.format("You earned %s credits\n", invoice.volumeCredits));
+        return result.toString();
+    }
+
+    private double calculateTotalAmount(Invoice invoice, Map<String, Play> plays, StringBuilder result, NumberFormat frmt) {
+        var totalAmount = 0d;
         var index = 0;
+
         for (var perf : invoice.performances) {
             var play = plays.get(perf.playID);
             var thisAmount = 0d;
@@ -38,9 +50,9 @@ public class StatementPrinter {
             }
 
             // add volume credits
-            volumeCredits += Math.max(perf.audience - 30, 0);
+            invoice.volumeCredits += Math.max(perf.audience - 30, 0);
             // add extra credit for every ten comedy attendees
-            if ("comedy".equals(play.type)) volumeCredits += Math.floor(perf.audience / 5);
+            if ("comedy".equals(play.type)) invoice.volumeCredits += Math.floor(perf.audience / 5);
 
             //Apply supplementary 5% for every play after the 10
             if( index > 10) {
@@ -48,18 +60,12 @@ public class StatementPrinter {
             }
 
             // print line for this order
-            result += String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience);
+            result.append(String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience));
 
             totalAmount += thisAmount;
         }
 
-        totalAmount /= 100;
-
-        totalAmount = calculateTva(totalAmount, invoice.customer.substring(0, 2));
-
-        result += String.format("Amount owed is %s\n", frmt.format(totalAmount));
-        result += String.format("You earned %s credits\n", volumeCredits);
-        return result;
+        return totalAmount;
     }
 
     private static double calculateTva(double amount, String country) {
