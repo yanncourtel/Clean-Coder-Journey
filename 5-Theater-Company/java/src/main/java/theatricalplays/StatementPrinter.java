@@ -1,6 +1,5 @@
 package theatricalplays;
 
-import javax.swing.plaf.IconUIResource;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
@@ -48,11 +47,14 @@ public class StatementPrinter {
 
         totalAmount /= 100;
 
-        var country = invoice.customer.substring(0, 2);
-        totalAmount = (int) (totalAmount * ((country.equals("FR")) ? 1.055 : 1));
+        totalAmount = (int) calculateTva(totalAmount, invoice.customer.substring(0, 2));
 
         result += String.format("Amount owed is %s\n", frmt.format(totalAmount));
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
+    }
+
+    private static double calculateTva(int amount, String country) {
+        return amount * ((country.equals("FR")) ? 1.055 : 1);
     }
 }

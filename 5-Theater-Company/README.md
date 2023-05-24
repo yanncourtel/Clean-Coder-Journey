@@ -27,6 +27,9 @@ Company Pedro is setting up their new digital invoice system but is having a har
  3) Every year, the credits number account for an extra income but the bonus % can change. 
 	a. the year 2020, the rate was 0.45 per credit
 	b. the year 2021, it changed to 0.4 per credit until today
+ 4) Thanks to the cultural revitalisation program in Luxembourg, the comedy performances are not submitted to the TVA. It needs to be addressed.
+	
+> A new line for TVA per performance would be nice in the invoice statement
 	
 > The handling of the exception needs to be better by displaying error message with information
 
