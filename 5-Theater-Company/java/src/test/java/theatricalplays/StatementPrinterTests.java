@@ -28,7 +28,7 @@ public class StatementPrinterTests {
         var finalString = "You earned";
         Assertions.assertEquals(
                 result.substring(result.indexOf(amountString) + amountString.length(), result.indexOf(finalString)).trim(),
-                "1,825.00");
+                "1,825.15");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class StatementPrinterTests {
         var amountString = "Amount owed is $";
         var finalString = "You earned";
         var actual = result.substring(result.indexOf(amountString) + amountString.length(), result.indexOf(finalString)).trim();
-        Assertions.assertEquals("1,782.00", actual);
+        Assertions.assertEquals("1,781.90", actual);
     }
 
     @Test
@@ -72,7 +72,37 @@ public class StatementPrinterTests {
         var amountString = "Amount owed is $";
         var finalString = "You earned";
         var actual = result.substring(result.indexOf(amountString) + amountString.length(), result.indexOf(finalString)).trim();
-        Assertions.assertEquals("2,093.00", actual);
+        Assertions.assertEquals("2,093.30", actual);
+    }
+
+    @Test
+    void exempleExtraForMoreTenPlays() {
+        Map<String, Play> plays = Map.of(
+                "hamlet",  new Play("Hamlet", "tragedy"),
+                "as-like", new Play("As You Like It", "comedy"),
+                "othello", new Play("Othello", "tragedy"));
+
+        Invoice invoice = new Invoice("BE_test", List.of(
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("as-like", 35),
+                new Performance("othello", 35)));
+
+        StatementPrinter statementPrinter = new StatementPrinter();
+        var result = statementPrinter.print(invoice, plays);
+
+        //TODO: Probably needs some rework...
+        var amountString = "Amount owed is $";
+        var finalString = "You earned";
+        var actual = result.substring(result.indexOf(amountString) + amountString.length(), result.indexOf(finalString)).trim();
+        Assertions.assertEquals("7,589.72", actual);
     }
 
     @Test
