@@ -1,0 +1,7 @@
+Statement for LU_Schienergienen
+  Hamlet: $800.00 ; TVA : $24.00 (70 seats)
+  Hamlet: $990.00 ; TVA : $29.70 (89 seats)
+  Othello: $1,550.00 ; TVA : $46.50 (145 seats)
+Amount owed is $3,440.20
+You earned 214 credits
+

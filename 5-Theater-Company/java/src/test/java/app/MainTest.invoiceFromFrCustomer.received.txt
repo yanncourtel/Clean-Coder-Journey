@@ -1,0 +1,7 @@
+Statement for FR_Patee
+  Hamlet: $650.00 ; TVA : $35.75 (55 seats)
+  As You Like It: $2,140.00 ; TVA : $117.70 (230 seats)
+  Othello: $4,120.00 ; TVA : $226.60 (402 seats)
+Amount owed is $7,290.05
+You earned 643 credits
+
