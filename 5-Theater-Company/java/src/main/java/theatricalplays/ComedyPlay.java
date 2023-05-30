@@ -1,16 +1,17 @@
 package theatricalplays;
 
-public class TragedyPlay extends Play {
-    public TragedyPlay(String name) {
-        super(name, "tragedy");
+public class ComedyPlay extends Play {
+    public ComedyPlay(String name) {
+        super(name, "comedy");
     }
 
     @Override
     public double calculateAmount(int audience) {
-        double thisAmount = 40000d;
-        if (audience > 30) {
-            thisAmount += 1000 * (audience - 30);
+        double thisAmount = 30000d;
+        if (audience > 20) {
+            thisAmount += 10000 + 500 * (audience - 20);
         }
+        thisAmount += 300 * audience;
         return thisAmount;
     }
 }

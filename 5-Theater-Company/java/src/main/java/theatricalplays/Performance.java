@@ -9,4 +9,8 @@ public class Performance {
         this.play = play;
         this.audience = audience;
     }
+
+    public double calculateAmount() {
+        return play.calculateAmount(this.audience);
+    }
 }

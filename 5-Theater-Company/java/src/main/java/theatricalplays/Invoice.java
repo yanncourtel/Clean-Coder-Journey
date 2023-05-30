@@ -22,25 +22,9 @@ public class Invoice {
             var thisAmount = 0d;
             index++;
 
-            // perf.calculateAmount();
+            thisAmount = perf.calculateAmount();
 
-            switch (perf.play.type) {
-                case "tragedy":
-                    thisAmount = 40000d;
-                    if (perf.audience > 30) {
-                        thisAmount += 1000 * (perf.audience - 30);
-                    }
-                    break;
-                case "comedy":
-                    thisAmount = 30000d;
-                    if (perf.audience > 20) {
-                        thisAmount += 10000 + 500 * (perf.audience - 20);
-                    }
-                    thisAmount += 300 * perf.audience;
-                    break;
-                default:
-                    throw new Error("unknown type: ${play.type}");
-            }
+
 
             // add volume credits
             this.volumeCredits += Math.max(perf.audience - 30, 0);

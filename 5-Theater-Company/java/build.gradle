@@ -22,6 +22,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
     testImplementation 'com.approvaltests:approvaltests:15.6.0'
     testImplementation 'org.assertj:assertj-core:3.19.0'
+    testImplementation 'junit:junit:4.13.1'
 }
 
 pitest {

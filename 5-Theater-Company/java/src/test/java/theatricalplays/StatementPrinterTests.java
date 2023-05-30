@@ -11,9 +11,9 @@ public class StatementPrinterTests {
     @Test
     void exempleAmountOwedTvaFR() {
         Map<String, Play> plays = Map.of(
-                "hamlet",  new Play("Hamlet", "tragedy"),
-                "as-like", new Play("As You Like It", "comedy"),
-                "othello", new Play("Othello", "tragedy"));
+                "hamlet",  new TragedyPlay("Hamlet"),
+                "as-like", new ComedyPlay("As You Like It"),
+                "othello", new TragedyPlay("Othello"));
 
         Invoice invoice = new Invoice("FR_BigCo", List.of(
                 new Performance(plays.get("hamlet"), 55),
@@ -34,9 +34,9 @@ public class StatementPrinterTests {
     @Test
     void exempleAmountOwedTvaLU() {
         Map<String, Play> plays = Map.of(
-                "hamlet",  new Play("Hamlet", "tragedy"),
-                "as-like", new Play("As You Like It", "comedy"),
-                "othello", new Play("Othello", "tragedy"));
+                "hamlet",  new TragedyPlay("Hamlet"),
+                "as-like", new ComedyPlay("As You Like It"),
+                "othello", new TragedyPlay("Othello"));
 
         Invoice invoice = new Invoice("LU_LuxEntertainement", List.of(
                 new Performance(plays.get("hamlet"), 55),
@@ -56,9 +56,9 @@ public class StatementPrinterTests {
     @Test
     void exempleAmountOwedTvaBE() {
         Map<String, Play> plays = Map.of(
-                "hamlet",  new Play("Hamlet", "tragedy"),
-                "as-like", new Play("As You Like It", "comedy"),
-                "othello", new Play("Othello", "tragedy"));
+                "hamlet",  new TragedyPlay("Hamlet"),
+                "as-like", new ComedyPlay("As You Like It"),
+                "othello", new TragedyPlay("Othello"));
 
         Invoice invoice = new Invoice("BE_test", List.of(
                 new Performance(plays.get("hamlet"), 55),
@@ -78,9 +78,9 @@ public class StatementPrinterTests {
     @Test
     void exempleExtraForMoreTenPlays() {
         Map<String, Play> plays = Map.of(
-                "hamlet",  new Play("Hamlet", "tragedy"),
-                "as-like", new Play("As You Like It", "comedy"),
-                "othello", new Play("Othello", "tragedy"));
+                "hamlet",  new TragedyPlay("Hamlet"),
+                "as-like", new ComedyPlay("As You Like It"),
+                "othello", new TragedyPlay("Othello"));
 
         Invoice invoice = new Invoice("BE_test", List.of(
                 new Performance(plays.get("as-like"), 35),
@@ -103,21 +103,5 @@ public class StatementPrinterTests {
         var finalString = "You earned";
         var actual = result.substring(result.indexOf(amountString) + amountString.length(), result.indexOf(finalString)).trim();
         Assertions.assertEquals("7,589.72", actual);
-    }
-
-    @Test
-    void statementWithNewPlayTypes() {
-        Map<String, Play> plays = Map.of(
-                "henry-v",  new Play("Henry V", "history"),
-                "as-like", new Play("As You Like It", "pastoral"));
-
-        Invoice invoice = new Invoice("BigCo", List.of(
-                new Performance(plays.get("henry-v"), 53),
-                new Performance(plays.get("as-like"), 55)));
-
-        StatementPrinter statementPrinter = new StatementPrinter();
-        Assertions.assertThrows(Error.class, () -> {
-            statementPrinter.print(invoice);
-        });
     }
 }
