@@ -2,11 +2,11 @@ package theatricalplays;
 
 public class Performance {
 
-    public String playID;
+    public Play play;
     public int audience;
 
-    public Performance(String playID, int audience) {
-        this.playID = playID;
+    public Performance(Play play, int audience) {
+        this.play = play;
         this.audience = audience;
     }
 }

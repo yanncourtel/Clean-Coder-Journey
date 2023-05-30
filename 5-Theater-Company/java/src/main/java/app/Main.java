@@ -25,6 +25,6 @@ public class Main {
                 .orElse(customer)
         );
 
-        invoices.forEach(i -> System.out.println(printer.print(i, TheaterRepository.plays)));
+        invoices.forEach(i -> System.out.println(printer.print(i)));
     }
 }

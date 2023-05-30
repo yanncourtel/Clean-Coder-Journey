@@ -2,16 +2,15 @@ package theatricalplays;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Map;
 
 public class StatementPrinter {
 
-    public String print(Invoice invoice, Map<String, Play> plays) {
+    public String print(Invoice invoice) {
         var result = new StringBuilder(String.format("Statement for %s\n", invoice.customer));
 
         NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
-        var totalAmount = invoice.calculateTotalAmount(plays, result, frmt);
+        var totalAmount = invoice.calculateTotalAmount(result, frmt);
 
         totalAmount /= 100;
 

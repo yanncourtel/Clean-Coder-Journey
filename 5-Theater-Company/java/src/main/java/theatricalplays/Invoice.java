@@ -2,7 +2,6 @@ package theatricalplays;
 
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.Map;
 
 public class Invoice {
 
@@ -15,16 +14,17 @@ public class Invoice {
         this.performances = performances;
     }
 
-    public double calculateTotalAmount(Map<String, Play> plays, StringBuilder result, NumberFormat frmt) {
+    public double calculateTotalAmount(StringBuilder result, NumberFormat frmt) {
         var totalAmount = 0d;
         var index = 0;
 
         for (var perf : this.performances) {
-            var play = plays.get(perf.playID);
             var thisAmount = 0d;
             index++;
 
-            switch (play.type) {
+            // perf.calculateAmount();
+
+            switch (perf.play.type) {
                 case "tragedy":
                     thisAmount = 40000d;
                     if (perf.audience > 30) {
@@ -45,7 +45,7 @@ public class Invoice {
             // add volume credits
             this.volumeCredits += Math.max(perf.audience - 30, 0);
             // add extra credit for every ten comedy attendees
-            if ("comedy".equals(play.type)) this.volumeCredits += Math.floor(perf.audience / 5);
+            if ("comedy".equals(perf.play.type)) this.volumeCredits += Math.floor(perf.audience / 5);
 
             //Apply supplementary 5% for every play after the 10
             if( index > 10) {
@@ -53,7 +53,7 @@ public class Invoice {
             }
 
             // print line for this order
-            result.append(String.format("  %s: %s (%s seats)\n", play.name, frmt.format(thisAmount / 100), perf.audience));
+            result.append(String.format("  %s: %s (%s seats)\n", perf.play.name, frmt.format(thisAmount / 100), perf.audience));
 
             totalAmount += thisAmount;
         }
