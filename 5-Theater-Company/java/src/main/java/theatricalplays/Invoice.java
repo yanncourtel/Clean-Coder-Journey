@@ -24,12 +24,9 @@ public class Invoice {
 
             thisAmount = perf.calculateAmount();
 
+            volumeCredits += perf.calculateCredit();
 
 
-            // add volume credits
-            this.volumeCredits += Math.max(perf.audience - 30, 0);
-            // add extra credit for every ten comedy attendees
-            if ("comedy".equals(perf.play.type)) this.volumeCredits += Math.floor(perf.audience / 5);
 
             //Apply supplementary 5% for every play after the 10
             if( index > 10) {

@@ -14,4 +14,9 @@ public class ComedyPlay extends Play {
         thisAmount += 300 * audience;
         return thisAmount;
     }
+
+    @Override
+    public double calculateExtraCredit(int audience) {
+        return Math.floor(audience / 5);
+    }
 }

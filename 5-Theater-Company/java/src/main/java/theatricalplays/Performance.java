@@ -13,4 +13,8 @@ public class Performance {
     public double calculateAmount() {
         return play.calculateAmount(this.audience);
     }
+
+    public int calculateCredit() {
+        return play.calculateCredit(this.audience);
+    }
 }
