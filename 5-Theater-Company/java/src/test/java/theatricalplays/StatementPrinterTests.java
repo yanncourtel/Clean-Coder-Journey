@@ -3,24 +3,22 @@ package theatricalplays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class StatementPrinterTests {
 
+    private List<Performance> performances = List.of(
+            new Performance(new TragedyPlay("Hamlet"), 55),
+            new Performance(new ComedyPlay("As You Like It"), 35),
+            new Performance(new TragedyPlay("Othello"), 40));
+    private StatementPrinter statementPrinter = new StatementPrinter();
+
     @Test
     void exempleAmountOwedTvaFR() {
-        Map<String, Play> plays = Map.of(
-                "hamlet",  new TragedyPlay("Hamlet"),
-                "as-like", new ComedyPlay("As You Like It"),
-                "othello", new TragedyPlay("Othello"));
+        Invoice invoice = new Invoice("FR_BigCo", performances);
 
-        Invoice invoice = new Invoice("FR_BigCo", List.of(
-                new Performance(plays.get("hamlet"), 55),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("othello"), 40)));
-
-        StatementPrinter statementPrinter = new StatementPrinter();
         var result = statementPrinter.print(invoice);
 
         //TODO: Probably needs some rework...
@@ -33,17 +31,8 @@ public class StatementPrinterTests {
 
     @Test
     void exempleAmountOwedTvaLU() {
-        Map<String, Play> plays = Map.of(
-                "hamlet",  new TragedyPlay("Hamlet"),
-                "as-like", new ComedyPlay("As You Like It"),
-                "othello", new TragedyPlay("Othello"));
+        Invoice invoice = new Invoice("LU_LuxEntertainement", performances);
 
-        Invoice invoice = new Invoice("LU_LuxEntertainement", List.of(
-                new Performance(plays.get("hamlet"), 55),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("othello"), 40)));
-
-        StatementPrinter statementPrinter = new StatementPrinter();
         var result = statementPrinter.print(invoice);
 
         //TODO: Probably needs some rework...
@@ -55,17 +44,8 @@ public class StatementPrinterTests {
 
     @Test
     void exempleAmountOwedTvaBE() {
-        Map<String, Play> plays = Map.of(
-                "hamlet",  new TragedyPlay("Hamlet"),
-                "as-like", new ComedyPlay("As You Like It"),
-                "othello", new TragedyPlay("Othello"));
+        Invoice invoice = new Invoice("BE_test", performances);
 
-        Invoice invoice = new Invoice("BE_test", List.of(
-                new Performance(plays.get("hamlet"), 55),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("othello"), 40)));
-
-        StatementPrinter statementPrinter = new StatementPrinter();
         var result = statementPrinter.print(invoice);
 
         //TODO: Probably needs some rework...
@@ -77,31 +57,21 @@ public class StatementPrinterTests {
 
     @Test
     void exempleExtraForMoreTenPlays() {
-        Map<String, Play> plays = Map.of(
-                "hamlet",  new TragedyPlay("Hamlet"),
-                "as-like", new ComedyPlay("As You Like It"),
-                "othello", new TragedyPlay("Othello"));
 
-        Invoice invoice = new Invoice("BE_test", List.of(
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("as-like"), 35),
-                new Performance(plays.get("othello"), 35)));
+        Invoice invoice = new Invoice("BE_test",
+                Collections
+                    .nCopies(11, new Performance(Map.of(
+                        "hamlet", new TragedyPlay("Hamlet"),
+                        "as-like", new ComedyPlay("As You Like It"),
+                        "othello", new TragedyPlay("Othello")).get("as-like"), 35))
+                    .stream().toList());
 
-        StatementPrinter statementPrinter = new StatementPrinter();
         var result = statementPrinter.print(invoice);
 
         //TODO: Probably needs some rework...
         var amountString = "Amount owed is $";
         var finalString = "You earned";
         var actual = result.substring(result.indexOf(amountString) + amountString.length(), result.indexOf(finalString)).trim();
-        Assertions.assertEquals("7,589.72", actual);
+        Assertions.assertEquals("7,754.89", actual);
     }
 }

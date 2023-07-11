@@ -2,7 +2,6 @@ package app;
 
 import repository.TheaterRepository;
 import theatricalplays.Invoice;
-import theatricalplays.StatementPrinter;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +14,6 @@ public class Main {
     public static TheaterRepository db = new TheaterRepository();
 
     public static void main(String[] args) {
-        StatementPrinter printer = new StatementPrinter();
         if (args != null && args.length >0){
           customer = args[0];
         }
@@ -25,6 +23,6 @@ public class Main {
                 .orElse(customer)
         );
 
-        invoices.forEach(i -> System.out.println(printer.print(i)));
+        invoices.forEach(i -> System.out.println(i.calculateTotalAmount().toString()));
     }
 }

@@ -1,15 +1,24 @@
 package theatricalplays;
 
 public class InvoiceLine {
-    double amount;
-    String playName;
-    int audience;
-    double tva;
+    private double amount;
+    private String playName;
+    private int audience;
+    private double tva;
 
     public InvoiceLine( String playName, double amount, int audience) {
         this.amount = amount;
         this.playName = playName;
         this.audience = audience;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("  %s: %s ; TVA : %s (%s seats)\n",
+                getPlayName(),
+                NumberToStringUtils.toFormattedNumber(getAmount()),
+                NumberToStringUtils.toFormattedNumber(getTva()),
+                getAudience());
     }
 
     public double getAmount() {

@@ -15,14 +15,13 @@ public class Invoice {
         this.performances = performances;
     }
 
-    public void calculateTotalAmount() {
+    public Invoice calculateTotalAmount() {
         var index = 0;
 
         for (var perf : this.performances) {
-            var thisAmount = 0d;
             index++;
 
-            thisAmount = perf.calculateAmount();
+            var thisAmount = perf.calculateAmount();
 
             volumeCredits += perf.calculateCredit();
 
@@ -38,13 +37,27 @@ public class Invoice {
 
             totalAmount += thisAmount;
         }
+
+        totalAmount *= getTvaRate();
+
+        return this;
+    }
+
+    public String toString() {
+        var printer = new StatementPrinter();
+
+        return printer.print(this);
     }
 
     public double getTotalAmount() {
         return totalAmount;
     }
 
-    public double getTvaRate() {
+    public int getVolumeCredits() {
+        return volumeCredits;
+    }
+
+    private double getTvaRate() {
         return switch (customer.substring(0, 2)) {
             case "BE" -> 1.21;
             case "FR" -> 1.055;
