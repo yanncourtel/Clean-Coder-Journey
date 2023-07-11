@@ -13,6 +13,7 @@ public class RaceTest {
         // act
 
         // verify
+        //FIXME only one call should be test in one unit test
         assertEquals(25, TestData.race1.getPoints(TestData.driver1));
         assertEquals(18, TestData.race1.getPoints(TestData.driver2));
         assertEquals(15, TestData.race1.getPoints(TestData.driver3));

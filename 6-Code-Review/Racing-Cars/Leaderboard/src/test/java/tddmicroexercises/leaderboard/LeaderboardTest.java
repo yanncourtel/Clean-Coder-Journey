@@ -50,6 +50,7 @@ public class LeaderboardTest {
 
         // verify
         assertEquals(Arrays.asList(driver1.getName(), driver2.getName(), driver3.getName()), rankings);
+        //FIXME add independant test by usage of having test harmcrest
         // note: the order of driver1 and driver2 is JDK/platform dependent
     }
 

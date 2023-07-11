@@ -16,7 +16,7 @@ public class TestData {
 
     public static Leaderboard sampleLeaderboard1;
     public static Leaderboard sampleLeaderboard2;
-
+//FIXME replace by fix test
     static {
         driver1 = new Driver("Nico Rosberg", "DE");
         driver2 = new Driver("Lewis Hamilton", "UK");
