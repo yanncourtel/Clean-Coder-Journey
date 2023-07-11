@@ -6,6 +6,7 @@ public class TelemetryClient
 {
     public static final String DIAGNOSTIC_MESSAGE = "AT#UD";
 
+    // TODO naming
     private boolean onlineStatus;
     private String diagnosticMessageResult = "";
 
@@ -18,6 +19,7 @@ public class TelemetryClient
 
     public void connect(String telemetryServerConnectionString)
     {
+        // 
         if (telemetryServerConnectionString == null || "".equals(telemetryServerConnectionString))
         {
             throw new IllegalArgumentException();
@@ -41,6 +43,7 @@ public class TelemetryClient
             throw new IllegalArgumentException();
         }
 
+        // TODO String comparison
         if (message == DIAGNOSTIC_MESSAGE)
         {
             // simulate a status report

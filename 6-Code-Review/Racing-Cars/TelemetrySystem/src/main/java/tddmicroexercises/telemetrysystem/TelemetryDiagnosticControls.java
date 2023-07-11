@@ -2,6 +2,7 @@ package tddmicroexercises.telemetrysystem;
 
 public class TelemetryDiagnosticControls
 {
+    // TODO non-static constant?
     private final String DiagnosticChannelConnectionString = "*111#";
     
     private final TelemetryClient telemetryClient;
@@ -20,6 +21,7 @@ public class TelemetryDiagnosticControls
             this.diagnosticInfo = diagnosticInfo;
         }
  
+        // TODO exception handling
         public void checkTransmission() throws Exception
         {
             diagnosticInfo = "";
