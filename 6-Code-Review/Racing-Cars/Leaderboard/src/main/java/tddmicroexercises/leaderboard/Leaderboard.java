@@ -12,6 +12,9 @@ public class Leaderboard {
 
     private final List<Race> races;
 
+
+    // TODO: complexite accidentelle
+    // TODO: introduire objet metier avec des methodes -> getWinner ?
     public Leaderboard(Race... races) {
         this.races = Arrays.asList(races);
     }

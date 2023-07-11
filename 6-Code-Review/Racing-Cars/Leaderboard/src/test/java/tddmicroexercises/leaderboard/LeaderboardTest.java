@@ -22,19 +22,20 @@ public class LeaderboardTest {
         Map<String, Integer> results = TestData.sampleLeaderboard1.driverResults();
 
         // verify
-        assertTrue(results.containsKey("Lewis Hamilton"), "results " + results);
-        assertEquals(18 + 18 + 25, (int) results.get("Lewis Hamilton"));
+        assertTrue(results.containsKey("Lewis Hamilton"), "results " + results); // TODO: assert a revoir - message
+        assertEquals(18 + 18 + 25, (int) results.get("Lewis Hamilton")); // TODO: expected ? magic number ? cast ????
     }
 
     @Test
-    public void isShouldFindTheWinner() {
+    public void isShouldFindTheWinner() { // TODO: nom de methode a revoir
         // setup
 
         // act
-        List<String> result = TestData.sampleLeaderboard1.driverRankings();
+        List<String> result = TestData.sampleLeaderboard1.driverRankings(); // TODO: souci test data
 
         // verify
-        assertEquals("Lewis Hamilton", result.get(0));
+        assertEquals("Lewis Hamilton", result.get(0)); // TODO: winner tjrs le premier element ?
+        // TODO: test le jeu de test ?
     }
 
     @Test
@@ -51,6 +52,7 @@ public class LeaderboardTest {
         // verify
         assertEquals(Arrays.asList(driver1.getName(), driver2.getName(), driver3.getName()), rankings);
         // note: the order of driver1 and driver2 is JDK/platform dependent
+        // TODO: wtf ?
     }
 
 }
