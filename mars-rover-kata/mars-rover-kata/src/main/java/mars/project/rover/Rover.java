@@ -1,10 +1,12 @@
 package mars.project.rover;
 
+import java.util.Arrays;
+
 public class Rover {
 
-    private final int x;
-    private final int y;
-    private final char direction;
+    private int x;
+    private int y;
+    private char direction;
 
     public Rover(int x, int y, char direction) {
         this.x = x;
@@ -16,7 +18,7 @@ public class Rover {
     public int getX() {
         return this.x;
     }
-    
+
     public int getY() {
         return this.y;
     }
@@ -24,5 +26,14 @@ public class Rover {
 
     public char getDirection() {
         return this.direction;
+    }
+
+    public void receiveCommand(String commands) {
+        for (char c : commands.toCharArray()) {
+            if (c == 'F') {
+                if(this.direction == 'N') this.y++;
+                else this.y--;
+            }
+        }
     }
 }
