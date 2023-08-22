@@ -1,17 +1,21 @@
 package mars.project.rover;
 
-import java.awt.*;
-
 public class Rover {
-    public Rover(int i, int i1) {
+
+    private final int x;
+    private final int y;
+
+    public Rover(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
 
     public int getX() {
-        return 0;
+        return this.x;
     }
-
+    
     public int getY() {
-        return -1;
+        return this.y;
     }
 }
