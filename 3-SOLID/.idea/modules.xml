@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/3-SOLID.iml" filepath="$PROJECT_DIR$/.idea/3-SOLID.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/dependency_inversion/dependency_inversion.iml" filepath="$PROJECT_DIR$/Java/dependency_inversion/dependency_inversion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/interface_segregation/interface_segregation.iml" filepath="$PROJECT_DIR$/Java/interface_segregation/interface_segregation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/liskov_substitution/liskov_substitution.iml" filepath="$PROJECT_DIR$/Java/liskov_substitution/liskov_substitution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/open_closed/open_closed.iml" filepath="$PROJECT_DIR$/Java/open_closed/open_closed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/single_responsibility/single_responsibility.iml" filepath="$PROJECT_DIR$/Java/single_responsibility/single_responsibility.iml" />
+    </modules>
+  </component>
+</project>

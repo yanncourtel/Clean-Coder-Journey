@@ -1,0 +1,21 @@
+
+
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ûª©™8÷Ü›¨ù0
+’
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".( ñ·üÿÿÿÿ8øÜ›¨ù0
+
+java:S1319 "pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ä—ñã8ùÜ›¨ù0
+7
+java:S1220""Move this file to a named package.8€İ›¨ù0
+v
+java:S2293
+"YReplace the type specification in this constructor call with the diamond operator ("<>").(‘÷µî8‰İ›¨ù0
+Q
+java:S6212"/Declare this local variable with "var" instead.(ù«êËıÿÿÿÿ8İ›¨ù0
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÏŒÄ‘ùÿÿÿÿ8“İ›¨ù0
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Í°‰ôüÿÿÿÿ8›İ›¨ù0
+v
+java:S2293!"YReplace the type specification in this constructor call with the diamond operator ("<>").(£¯©é8£İ›¨ù0
+U	java:S106+"9Replace this use of System.out or System.err by a logger.(øºÄÅ8´İ›¨ù0
