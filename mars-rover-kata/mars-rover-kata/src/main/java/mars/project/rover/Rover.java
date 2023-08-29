@@ -33,9 +33,13 @@ public class Rover {
                 else if(this.direction == 'W') this.x--;
                 else if(this.direction == 'E') this.x++;
                 else this.y--;
-            } else {
+            } else if (c == 'B') {
                 if(this.direction == 'N') this.y--;
+                else if(this.direction == 'W') this.x++;
+                else if(this.direction == 'E') this.x--;
                 else this.y++;
+            } else if (c == 'L') {
+                this.direction = 'E';
             }
 
         }

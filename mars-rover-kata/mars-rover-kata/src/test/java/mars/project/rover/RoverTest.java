@@ -31,11 +31,12 @@ public class RoverTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"S,3,4,3,5",
-            "N,3,4,3,3"
-//            "W,3,4,2,4",
-//            "E,3,4,4,4"
-            })
+    @CsvSource({
+        "S,3,4,3,5",
+        "N,3,4,3,3",
+        "W,3,4,4,4",
+        "E,3,4,2,4"
+    })
     void shouldMoveBackwardWhenReceivingCommandB(char direction, int initX, int initY, int targetX, int targetY) {
         Rover rover = new Rover(initX, initY, direction);
         rover.receiveCommand("B");
@@ -43,5 +44,21 @@ public class RoverTest {
         assertEquals(targetX, rover.getX(), "should be " + targetX);
         assertEquals(targetY, rover.getY(), "should be " + targetY);
         assertEquals(direction, rover.getDirection());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "S,E",
+        "E,N"
+        // "W,3,4,4,4",
+        // "E,3,4,2,4"
+    })
+    void shouldRotateLeftWhenReceivingCommandL(char initDirection, char expectedDirection) {
+        Rover rover = new Rover(0, 0, initDirection);
+        rover.receiveCommand("L");
+
+        assertEquals(0, rover.getX());
+        assertEquals(0, rover.getY());
+        assertEquals(expectedDirection, rover.getDirection());
     }
 }
