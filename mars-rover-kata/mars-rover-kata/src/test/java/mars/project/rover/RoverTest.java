@@ -1,8 +1,10 @@
 package mars.project.rover;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class RoverTest {
 
@@ -24,14 +26,14 @@ public class RoverTest {
         assertEquals('N', rover.getDirection(), "should be N");
     }
 
-    //TODO Parameterize direction
-    @Test
-    void shouldMoveForwardWhenReceivingCommandFAndFacingSud() {
-        Rover rover = new Rover(3, 4, 'S');
+    @ParameterizedTest
+    @ValueSource(chars = {'S'})
+    void shouldMoveForwardWhenReceivingCommandFAndFacingSouth(char direction) {
+        Rover rover = new Rover(3, 4, direction);
         rover.receiveCommand("F");
 
         assertEquals(3, rover.getX(), "should be 3");
         assertEquals(3, rover.getY(), "should be 3");
-        assertEquals('S', rover.getDirection(), "should be S");
+        assertEquals(direction, rover.getDirection());
     }
 }

@@ -1,7 +1,5 @@
 package mars.project.rover;
 
-import java.util.Arrays;
-
 public class Rover {
 
     private int x;
