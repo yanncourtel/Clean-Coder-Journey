@@ -34,6 +34,8 @@ public class Rover {
                 handleMoveBackward();
             } else if (c == 'L') {
                 handleRotateLeft();
+            } else if (c == 'R') {
+                handleRotateRight();
             }
         }
     }
@@ -44,7 +46,12 @@ public class Rover {
         else if (this.direction == 'N') this.direction = 'W';
         else this.direction = 'S';
     }
-
+    private void handleRotateRight() {
+        if (this.direction == 'S') this.direction = 'W';
+        else if (this.direction == 'E') this.direction = 'S';
+        else if (this.direction == 'N') this.direction = 'E';
+       else this.direction = 'N';
+    }
     private void handleMoveBackward() {
         if(this.direction == 'N') this.y--;
         else if(this.direction == 'W') this.x++;

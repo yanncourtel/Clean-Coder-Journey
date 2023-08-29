@@ -61,4 +61,30 @@ public class RoverTest {
         assertEquals(0, rover.getY());
         assertEquals(expectedDirection, rover.getDirection());
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "S,W",
+            "E,S",
+            "N,E",
+            "W,N"
+    })
+    void shouldRotateRightWhenReceivingCommandR(char initDirection, char expectedDirection) {
+        Rover rover = new Rover(0, 0, initDirection);
+        rover.receiveCommand("R");
+
+        assertEquals(0, rover.getX());
+        assertEquals(0, rover.getY());
+        assertEquals(expectedDirection, rover.getDirection());
+    }
+
+    @Test
+    void shouldIgnoreCommandWhenReceivingUnknownCommand() {
+        Rover rover = new Rover(0, 0, 'N');
+        rover.receiveCommand("Z");
+
+        assertEquals(0, rover.getX());
+        assertEquals(0, rover.getY());
+        assertEquals('N', rover.getDirection());
+    }
 }
