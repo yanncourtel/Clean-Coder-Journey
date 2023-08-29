@@ -17,10 +17,28 @@ public class RoverTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"S,3,4,3,3", "N,3,4,3,5", "W,3,4,2,4"})
+    @CsvSource({"S,3,4,3,3",
+            "N,3,4,3,5",
+            "W,3,4,2,4",
+            "E,3,4,4,4"})
     void shouldMoveForwardWhenReceivingCommandF(char direction, int initX, int initY, int targetX, int targetY) {
         Rover rover = new Rover(initX, initY, direction);
         rover.receiveCommand("F");
+
+        assertEquals(targetX, rover.getX(), "should be " + targetX);
+        assertEquals(targetY, rover.getY(), "should be " + targetY);
+        assertEquals(direction, rover.getDirection());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"S,3,4,3,5",
+            "N,3,4,3,3"
+//            "W,3,4,2,4",
+//            "E,3,4,4,4"
+            })
+    void shouldMoveBackwardWhenReceivingCommandB(char direction, int initX, int initY, int targetX, int targetY) {
+        Rover rover = new Rover(initX, initY, direction);
+        rover.receiveCommand("B");
 
         assertEquals(targetX, rover.getX(), "should be " + targetX);
         assertEquals(targetY, rover.getY(), "should be " + targetY);

@@ -30,8 +30,14 @@ public class Rover {
         for (char c : commands.toCharArray()) {
             if (c == 'F') {
                 if(this.direction == 'N') this.y++;
+                else if(this.direction == 'W') this.x--;
+                else if(this.direction == 'E') this.x++;
                 else this.y--;
+            } else {
+                if(this.direction == 'N') this.y--;
+                else this.y++;
             }
+
         }
     }
 }
