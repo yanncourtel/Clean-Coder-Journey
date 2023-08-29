@@ -29,19 +29,33 @@ public class Rover {
     public void receiveCommand(String commands) {
         for (char c : commands.toCharArray()) {
             if (c == 'F') {
-                if(this.direction == 'N') this.y++;
-                else if(this.direction == 'W') this.x--;
-                else if(this.direction == 'E') this.x++;
-                else this.y--;
+                handleMoveForward();
             } else if (c == 'B') {
-                if(this.direction == 'N') this.y--;
-                else if(this.direction == 'W') this.x++;
-                else if(this.direction == 'E') this.x--;
-                else this.y++;
+                handleMoveBackward();
             } else if (c == 'L') {
-                this.direction = 'E';
+                handleRotateLeft();
             }
-
         }
+    }
+
+    private void handleRotateLeft() {
+        if (this.direction == 'S') this.direction = 'E';
+        else if (this.direction == 'E') this.direction = 'N';
+        else if (this.direction == 'N') this.direction = 'W';
+        else this.direction = 'S';
+    }
+
+    private void handleMoveBackward() {
+        if(this.direction == 'N') this.y--;
+        else if(this.direction == 'W') this.x++;
+        else if(this.direction == 'E') this.x--;
+        else this.y++;
+    }
+
+    private void handleMoveForward() {
+        if(this.direction == 'N') this.y++;
+        else if(this.direction == 'W') this.x--;
+        else if(this.direction == 'E') this.x++;
+        else this.y--;
     }
 }

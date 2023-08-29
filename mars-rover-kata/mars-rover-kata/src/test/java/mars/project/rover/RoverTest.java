@@ -49,9 +49,9 @@ public class RoverTest {
     @ParameterizedTest
     @CsvSource({
         "S,E",
-        "E,N"
-        // "W,3,4,4,4",
-        // "E,3,4,2,4"
+        "E,N",
+        "N,W",
+        "W,S"
     })
     void shouldRotateLeftWhenReceivingCommandL(char initDirection, char expectedDirection) {
         Rover rover = new Rover(0, 0, initDirection);
