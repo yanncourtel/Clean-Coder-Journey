@@ -5,13 +5,14 @@ public class Rover {
     private int x;
     private int y;
     private char direction;
-
-    public Rover(int x, int y, char direction) {
+    private Planet planet;
+    
+    public Rover(int x, int y, char direction, Planet planet) {
         this.x = x;
         this.y = y;
         this.direction = direction;
+        this.planet = planet;
     }
-
 
     public int getX() {
         return this.x;
@@ -20,7 +21,6 @@ public class Rover {
     public int getY() {
         return this.y;
     }
-
 
     public char getDirection() {
         return this.direction;
@@ -57,5 +57,7 @@ public class Rover {
         else if(this.direction == 'W') this.x--;
         else if(this.direction == 'E') this.x++;
         else this.y--;
+
+        if (this.y > this.planet.maxY()) this.y = this.planet.minY();
     }
 }
