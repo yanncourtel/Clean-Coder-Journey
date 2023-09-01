@@ -36,3 +36,5 @@ Company Pedro is setting up their new digital invoice system but is having a har
 > A better set of tests will go a long way to understand the application
 
 ==> You are the new team responsible of this roadmap.
+
+Miro board used to run your exercice : https://miro.com/app/board/uXjVOuDqllU=/?moveToWidget=3458764555194008021&cot=14
