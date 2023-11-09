@@ -1,0 +1,25 @@
+@startuml
+class Player {
+    Set<Dice> boardDices
+    Set<Dice> keptDices
+    --
+    rollBoardDices()
+    ==
+    0 <= boardDices <= 5
+    0 <= keptDices <= 5
+    keptDices.size() + boardDices.size() == 5
+}
+
+class Dice {
+    Integer value
+    --
+    roll()
+    ==
+    1 <= value <= 6
+}
+
+class Game
+
+Player *-- Dice
+
+@enduml
