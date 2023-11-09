@@ -1,20 +1,8 @@
 package lu.its4u.yahtzee;
 
-import java.util.Set;
-
-public class SumOfOneRule extends Rule {
+public class SumOfOneRule extends SumRule {
 
     public SumOfOneRule() {
-        super("Somme de 1");
+        super(1);
     }
-
-    @Override
-    public int evaluate(Set<Dice> dices) {
-        return dices.stream()
-            .map(Dice::getValue)
-            .filter(v -> v == 1)
-            .mapToInt(Integer::intValue)
-            .sum();
-    }
-    
 }
