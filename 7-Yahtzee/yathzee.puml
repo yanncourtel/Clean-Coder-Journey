@@ -14,13 +14,13 @@ class Player {
 
 class PlayerScore {
     -Map<Rule rule, Integer value> scores
-    +void save(String ruleName, Set<YathzeeDice> dices)
+    +void save(String ruleName, Set<Dice> dices)
     +Integer getTotal()
 }
 
 class Rule {
     -String name
-    +Integer evaluate(Set<YathzeeDice> dices)
+    +Integer evaluate(Set<Dice> dices)
 }
 
 class YathzeeDice {
