@@ -14,7 +14,7 @@ public class Player {
     public Player() {
         Set dices = new HashSet();
         for (int i = 0; i < 5; i++) {
-            dices.add(new YahtzeeDice());
+            dices.add(new YahtzeeDice(i + 1));
         }
         this.dices = dices;
     }
@@ -25,11 +25,16 @@ public class Player {
         }
     }
     public void keepDice(int index) {
+        dices.stream()
+                .filter(dice -> dice.index == index)
+                .forEach(YahtzeeDice::keep);
 
     }
 
     public void replayDice(int index) {
-
+        dices.stream()
+                .filter(dice -> dice.index == index)
+                .forEach(YahtzeeDice::replay);
     }
 
     public Map<Integer, Boolean> displayDices() {

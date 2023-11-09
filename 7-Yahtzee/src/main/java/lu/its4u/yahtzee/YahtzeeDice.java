@@ -5,6 +5,10 @@ public class YahtzeeDice extends Dice{
     boolean kept;
     int index;
 
+    public YahtzeeDice(int index) {
+        this.index = index;
+    }
+
     public void keep(){
         kept=true;
     }

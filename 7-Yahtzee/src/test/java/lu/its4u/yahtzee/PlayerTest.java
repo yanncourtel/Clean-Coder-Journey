@@ -4,10 +4,12 @@ package lu.its4u.yahtzee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class PlayerTest {
 
     @Test
-     void rollDices () {
+    void rollDices() {
         Player p1 = new Player();
         p1.rollBoardDices();
         for (YahtzeeDice dice : p1.dices) {
@@ -18,7 +20,39 @@ public class PlayerTest {
 
     private void hasScore(YahtzeeDice dice) {
         Assertions.assertNotNull(dice.getValue());
-        Assertions.assertTrue(dice.getValue() <=6);
-        Assertions.assertTrue(dice.getValue() >0);
+        Assertions.assertTrue(dice.getValue() <= 6);
+        Assertions.assertTrue(dice.getValue() > 0);
+    }
+
+    @Test
+    public void having5DicesOnTheBoardAndKeepingOneTest() {
+        Player player = new Player();
+
+        player.keepDice(1);
+
+        assertEquals(true, player.dices.stream().filter(d -> d.index == 1).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 2).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 3).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 4).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 5).findFirst().get().kept);
+    }
+
+    @Test
+    public void having1KeptAndReplayingOneTest() {
+        Player player = new Player();
+
+        // Keep the dice to change status, it has been tested above
+        player.keepDice(1);
+
+        // Replay the dice
+        player.replayDice(1);
+
+        var board = player.displayDices();
+
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 1).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 2).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 3).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 4).findFirst().get().kept);
+        assertEquals(false, player.dices.stream().filter(d -> d.index == 5).findFirst().get().kept);
     }
 }
