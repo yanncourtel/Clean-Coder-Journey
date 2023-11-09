@@ -9,14 +9,14 @@ class YahtzeeDiceTest {
 
     @Test
     void keep() {
-        YahtzeeDice dice = new YahtzeeDice();
+        YahtzeeDice dice = new YahtzeeDice(0);
         dice.keep();
         Assertions.assertTrue(dice.kept);
     }
 
     @Test
     void replay() {
-        YahtzeeDice dice = new YahtzeeDice();
+        YahtzeeDice dice = new YahtzeeDice(0);
         dice.replay();
         Assertions.assertFalse(dice.kept);
     }

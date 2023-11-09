@@ -47,8 +47,6 @@ public class PlayerTest {
         // Replay the dice
         player.replayDice(1);
 
-        var board = player.displayDices();
-
         assertEquals(false, player.dices.stream().filter(d -> d.index == 1).findFirst().get().kept);
         assertEquals(false, player.dices.stream().filter(d -> d.index == 2).findFirst().get().kept);
         assertEquals(false, player.dices.stream().filter(d -> d.index == 3).findFirst().get().kept);

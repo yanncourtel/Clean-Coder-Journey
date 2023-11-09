@@ -15,6 +15,7 @@ class Player {
 class PlayerScore {
     -Map<Rule rule, Integer value> scores
     +void save(String ruleName, Set<Dice> dices)
+    +Integer getBonusSum()
     +Integer getTotal()
 }
 
