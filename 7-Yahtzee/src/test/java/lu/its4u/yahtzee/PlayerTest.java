@@ -11,7 +11,7 @@ public class PlayerTest {
     @Test
     void rollDices() throws TooManyRollException {
         Player p1 = new Player();
-        p1.rollBoardDices();
+        assertEquals(5, p1.rollBoardDices());
         for (YahtzeeDice dice : p1.dices) {
             hasScore(dice);
         }
@@ -61,6 +61,17 @@ public class PlayerTest {
         p1.rollBoardDices();
         p1.rollBoardDices();
         p1.rollBoardDices();
+        Assertions.assertEquals(5, p1.dices.size(), "Player should have 5 dices");
+    }
+
+    @Test
+    void playerShouldRollOnlyReplayableDices() throws TooManyRollException {
+        Player p1 = new Player();
+        p1.rollBoardDices();
+        p1.keepDice(1);
+        p1.keepDice(3);
+        assertEquals(3, p1.rollBoardDices());
+
         Assertions.assertEquals(5, p1.dices.size(), "Player should have 5 dices");
     }
 

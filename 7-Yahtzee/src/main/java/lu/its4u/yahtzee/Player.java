@@ -20,14 +20,20 @@ public class Player {
         this.dices = dices;
     }
 
-    public void rollBoardDices() throws TooManyRollException {
+    public int rollBoardDices() throws TooManyRollException {
         if(rollCount >= 3) {
             throw new TooManyRollException();
         }
+        int lauchendDice =0;
         for (YahtzeeDice dice: dices) {
-            dice.roll();
+            if(!dice.kept) {
+                dice.roll();
+                lauchendDice++;
+            }
+
         }
         rollCount++;
+        return lauchendDice;
     }
     public void keepDice(int index) {
         dices.stream()
