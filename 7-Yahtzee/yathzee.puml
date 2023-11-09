@@ -13,9 +13,10 @@ class Player {
 }
 
 class PlayerScore {
-    -Map<Rule rule, Integer value> scores
+    -Map<Rule, Integer> scores
     +void save(String ruleName, Set<Dice> dices)
-    +Integer getBonusSum()
+    +Map<Rule, Integer> preview(Set<Dice> dices)
+    +Integer getSumBonus()
     +Integer getTotal()
 }
 
@@ -34,7 +35,7 @@ class YathzeeDice {
 class Dice {
     -Integer value
     --
-    #void roll()
+    +void roll()
     +Integer getValue()
     ==
     1 <= value <= 6
