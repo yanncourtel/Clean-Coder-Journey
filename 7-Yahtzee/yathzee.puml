@@ -7,19 +7,20 @@ class Player {
     +void keepDice(int index)
     +void replayDice(int index)
     +Map<int, bool> displayDices()
+    +int displayTotal()
     ==
     dices.size() == 5
 }
 
 class PlayerScore {
-
-    --
-    save(Set<Dice> dices)
+    -Map<Rule rule, Integer value> scores
+    +void save(String ruleName, Set<YathzeeDice> dices)
+    +Integer getTotal()
 }
 
-class YathzeeScore {
-    String name
-    int baseScore
+class Rule {
+    -String name
+    +Integer evaluate(Set<YathzeeDice> dices)
 }
 
 class YathzeeDice {
@@ -42,6 +43,7 @@ class Game
 
 Player *-- YathzeeDice
 Player *-- PlayerScore
+PlayerScore *-- Rule
 YathzeeDice --|> Dice
 
 @enduml
