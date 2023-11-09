@@ -10,7 +10,7 @@ class DiceTest {
     void roll() {
         Dice dice  = new Dice();
         dice.roll();
-        Assertions.assertTrue(dice.getValue() <6);
+        Assertions.assertTrue(dice.getValue() <=6);
         Assertions.assertTrue(dice.getValue() >0);
     }
 }

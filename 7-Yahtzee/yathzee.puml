@@ -1,16 +1,14 @@
 @startuml
 class Player {
-    -Map<int, Dice> boardDices
-    -Map<int, Dice> keptDices
+    -Set<YathzeeDice> dices
     -PlayerScore score
     --
-    rollBoardDices()
-    keepDice(int index)
-    replayDice(int index)
+    +void rollBoardDices()
+    +void keepDice(int index)
+    +void replayDice(int index)
+    +Map<int, bool> displayDices()
     ==
-    0 <= boardDices.size() <= 5
-    0 <= keptDices.size() <= 5
-    keptDices.size() + boardDices.size() == 5
+    dices.size() == 5
 }
 
 class PlayerScore {
@@ -19,16 +17,31 @@ class PlayerScore {
     save(Set<Dice> dices)
 }
 
+class YathzeeScore {
+    String name
+    int baseScore
+}
+
+class YathzeeDice {
+    -bool kept
+    -int index
+    +void keep()
+    +void replay()
+}
+
 class Dice {
-    Integer value
+    -Integer value
     --
-    roll()
+    #void roll()
+    +Integer getValue()
     ==
     1 <= value <= 6
 }
 
 class Game
 
-Player *-- Dice
+Player *-- YathzeeDice
+Player *-- PlayerScore
+YathzeeDice --|> Dice
 
 @enduml
