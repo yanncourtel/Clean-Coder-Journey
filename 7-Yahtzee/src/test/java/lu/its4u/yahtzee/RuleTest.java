@@ -59,4 +59,108 @@ class RuleTest {
             )));
         }
     }
+
+    @Nested
+    class SumOfThree {
+
+        @Test
+        void shouldEvaluateTo0() {
+            Assertions.assertEquals(0, new SumOfThreeRule().evaluate(Set.of(
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5)
+            )));
+        }
+    
+        @Test
+        void shouldEvaluateTo3With1DiceToThree() {
+            Assertions.assertEquals(3, new SumOfThreeRule().evaluate(Set.of(
+                new FixedValueDice(3),
+                new FixedValueDice(2),
+                new FixedValueDice(1),
+                new FixedValueDice(2),
+                new FixedValueDice(5)
+            )));
+        }
+    }
+
+    @Nested
+    class SumOfFour {
+
+        @Test
+        void shouldEvaluateTo0() {
+            Assertions.assertEquals(0, new SumOfFourRule().evaluate(Set.of(
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5)
+            )));
+        }
+    
+        @Test
+        void shouldEvaluateTo12With3DicesToTwo() {
+            Assertions.assertEquals(12, new SumOfFourRule().evaluate(Set.of(
+                new FixedValueDice(5),
+                new FixedValueDice(4),
+                new FixedValueDice(4),
+                new FixedValueDice(4),
+                new FixedValueDice(5)
+            )));
+        }
+    }
+
+    @Nested
+    class SumOfFive {
+
+        @Test
+        void shouldEvaluateTo0() {
+            Assertions.assertEquals(0, new SumOfFiveRule().evaluate(Set.of(
+                new FixedValueDice(3),
+                new FixedValueDice(3),
+                new FixedValueDice(3),
+                new FixedValueDice(3),
+                new FixedValueDice(3)
+            )));
+        }
+    
+        @Test
+        void shouldEvaluateTo1With2DicesToFive() {
+            Assertions.assertEquals(10, new SumOfFiveRule().evaluate(Set.of(
+                new FixedValueDice(5),
+                new FixedValueDice(4),
+                new FixedValueDice(4),
+                new FixedValueDice(4),
+                new FixedValueDice(5)
+            )));
+        }
+    }
+
+    @Nested
+    class SumOfSix {
+
+        @Test
+        void shouldEvaluateTo0() {
+            Assertions.assertEquals(0, new SumOfSixRule().evaluate(Set.of(
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5),
+                new FixedValueDice(5)
+            )));
+        }
+    
+        @Test
+        void shouldEvaluateTo12With3DicesToTwo() {
+            Assertions.assertEquals(12, new SumOfSixRule().evaluate(Set.of(
+                new FixedValueDice(5),
+                new FixedValueDice(6),
+                new FixedValueDice(4),
+                new FixedValueDice(6),
+                new FixedValueDice(5)
+            )));
+        }
+    }
 }
