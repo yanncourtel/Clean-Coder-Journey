@@ -1,4 +1,4 @@
-package lu.its4u;
+package lu.its4u.yahtzee;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
