@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class YahtzeeGame {
+public class Game {
 
     private static final int NUM_DICE = 5;
     private static final int NUM_ROUNDS = 13;

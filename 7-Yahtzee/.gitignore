@@ -1,2 +1,3 @@
-buildOutputCleanup.lock
+target
 .idea
+.vscode

@@ -1,4 +1,4 @@
-package main.java.lu.its4u;
+package lu.its4u.yahtzee;
 
 public class Player {
     
