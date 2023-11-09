@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PlayerTest {
 
     @Test
-    void rollDices() {
+    void rollDices() throws TooManyRollException {
         Player p1 = new Player();
         p1.rollBoardDices();
         for (YahtzeeDice dice : p1.dices) {
@@ -52,5 +52,25 @@ public class PlayerTest {
         assertEquals(false, player.dices.stream().filter(d -> d.index == 3).findFirst().get().kept);
         assertEquals(false, player.dices.stream().filter(d -> d.index == 4).findFirst().get().kept);
         assertEquals(false, player.dices.stream().filter(d -> d.index == 5).findFirst().get().kept);
+    }
+
+
+    @Test
+    void playerShouldBeAbletoPlay3Time() throws TooManyRollException {
+        Player p1 = new Player();
+        p1.rollBoardDices();
+        p1.rollBoardDices();
+        p1.rollBoardDices();
+        Assertions.assertEquals(5, p1.dices.size(), "Player should have 5 dices");
+    }
+
+    @Test
+    void playerShouldntBeAbletoPlay4Time() throws TooManyRollException {
+        Player p1 = new Player();
+        p1.rollBoardDices();
+        p1.rollBoardDices();
+        p1.rollBoardDices();
+        Assertions.assertThrows(TooManyRollException.class, () -> {p1.rollBoardDices();
+        });
     }
 }

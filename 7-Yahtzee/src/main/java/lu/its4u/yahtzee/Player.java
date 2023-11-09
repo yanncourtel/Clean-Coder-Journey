@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Player {
     Set<YahtzeeDice> dices;
+    int rollCount;
 
     /**
      * Crate new Player with 5 dices.
@@ -19,10 +20,14 @@ public class Player {
         this.dices = dices;
     }
 
-    public void rollBoardDices(){
+    public void rollBoardDices() throws TooManyRollException {
+        if(rollCount >= 3) {
+            throw new TooManyRollException();
+        }
         for (YahtzeeDice dice: dices) {
             dice.roll();
         }
+        rollCount++;
     }
     public void keepDice(int index) {
         dices.stream()
