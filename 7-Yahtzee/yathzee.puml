@@ -1,13 +1,22 @@
 @startuml
 class Player {
-    Set<Dice> boardDices
-    Set<Dice> keptDices
+    -Map<int, Dice> boardDices
+    -Map<int, Dice> keptDices
+    -PlayerScore score
     --
     rollBoardDices()
+    keepDice(int index)
+    replayDice(int index)
     ==
-    0 <= boardDices <= 5
-    0 <= keptDices <= 5
+    0 <= boardDices.size() <= 5
+    0 <= keptDices.size() <= 5
     keptDices.size() + boardDices.size() == 5
+}
+
+class PlayerScore {
+
+    --
+    save(Set<Dice> dices)
 }
 
 class Dice {
