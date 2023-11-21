@@ -58,4 +58,8 @@ public class Order {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void changeStatus(boolean approved) {
+        this.status = (approved ? OrderStatus.APPROVED : OrderStatus.REJECTED);
+    }
 }
