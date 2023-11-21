@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PlayerTest {
 
@@ -83,5 +84,28 @@ public class PlayerTest {
         p1.rollBoardDices();
         Assertions.assertThrows(TooManyRollException.class, () -> {p1.rollBoardDices();
         });
+    }
+
+    @Test
+    void numberOfRollsIsResetedAfterASaveScore() throws TooManyRollException {
+
+        var p = new Player();
+        p.rollBoardDices();
+
+        p.save();
+
+        assertEquals(0, p.rollCount);
+    }
+    @Test
+    void dicesAreResetedAfterASaveScore() throws TooManyRollException {
+
+        var p = new Player();
+        p.rollBoardDices();
+        p.keepDice(1);
+
+        p.save();
+
+        assertFalse(p.dices.stream().anyMatch(d -> d.getValue() != null), "There should be no dice with a previous value");
+        assertFalse(p.dices.stream().anyMatch(d -> d.kept), "There should be no dice with a kept status");
     }
 }

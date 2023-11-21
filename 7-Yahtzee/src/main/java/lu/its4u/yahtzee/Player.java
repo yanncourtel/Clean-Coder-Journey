@@ -52,4 +52,8 @@ public class Player {
         return new HashMap<>();
     }
 
+    public void save() {
+        rollCount = 0;
+        dices.forEach(YahtzeeDice::reset);
+    }
 }

@@ -16,4 +16,9 @@ public class YahtzeeDice extends Dice{
     public void replay(){
         kept=false;
     }
+
+    public void reset() {
+        value = null;
+        kept = false;
+    }
 }
