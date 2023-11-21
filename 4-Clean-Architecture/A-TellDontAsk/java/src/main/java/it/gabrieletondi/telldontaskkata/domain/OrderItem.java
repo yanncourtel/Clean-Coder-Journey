@@ -10,15 +10,13 @@ public class OrderItem {
     private BigDecimal tax;
 
     public OrderItem(Product product, int quantity) {
-        final BigDecimal unitaryTax = product.getPrice().divide(BigDecimal.valueOf(100)).multiply(product.getCategory().getTaxPercentage()).setScale(2, RoundingMode.HALF_UP);
-        final BigDecimal unitaryTaxedAmount = product.getPrice().add(unitaryTax).setScale(2, RoundingMode.HALF_UP);
-        final BigDecimal taxedAmount = unitaryTaxedAmount.multiply(BigDecimal.valueOf(quantity)).setScale(2, RoundingMode.HALF_UP);
-        final BigDecimal taxAmount = unitaryTax.multiply(BigDecimal.valueOf(quantity));
-
         this.product = product;
         this.quantity = quantity;
-        this.tax = taxAmount;
-        this.taxedAmount = taxedAmount;
+        this.tax = product.getUnitaryTax()
+            .multiply(BigDecimal.valueOf(quantity));
+        this.taxedAmount = product.getUnitaryTaxedAmount()
+            .multiply(BigDecimal.valueOf(quantity))
+            .setScale(2, RoundingMode.HALF_UP);
     }
 
     public Product getProduct() {
