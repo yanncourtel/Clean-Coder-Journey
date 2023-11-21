@@ -19,6 +19,7 @@ public class PlayerScore {
     ));
 
     public void save(String ruleName, Set<Dice> dices) {
+        
 
     }
 

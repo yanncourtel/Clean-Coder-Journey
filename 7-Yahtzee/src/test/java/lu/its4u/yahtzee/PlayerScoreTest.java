@@ -1,6 +1,7 @@
 package lu.its4u.yahtzee;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -57,5 +58,19 @@ class PlayerScoreTest {
         );
     
         Assertions.assertEquals(68 + PlayerScore.BONUS, playerScore.getTotal());
+    }
+
+    @Test
+    void testSaveAllDiceTo6() {
+        PlayerScore playerScore = new PlayerScore();
+        playerScore.save("Somme de 6", Set.of(
+            new YahtzeeDice(1),
+            new YahtzeeDice(2),
+            new YahtzeeDice(3),
+            new YahtzeeDice(4),
+            new YahtzeeDice(5)
+        ));
+
+        Assertions.assertEquals(30, playerScore.getTotal());
     }
 }
