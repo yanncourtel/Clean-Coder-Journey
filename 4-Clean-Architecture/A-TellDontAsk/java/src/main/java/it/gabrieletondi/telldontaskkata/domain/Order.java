@@ -5,13 +5,14 @@ import it.gabrieletondi.telldontaskkata.useCase.RejectedOrderCannotBeApprovedExc
 import it.gabrieletondi.telldontaskkata.useCase.ShippedOrdersCannotBeChangedException;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private BigDecimal total;
+    private BigDecimal total = new BigDecimal("0.00");
     private String currency;
-    private List<OrderItem> items;
-    private BigDecimal tax;
+    private List<OrderItem> items = new ArrayList<>();
+    private BigDecimal tax = new BigDecimal("0.00");
     private OrderStatus status;
     private int id;
 
@@ -84,5 +85,12 @@ public class Order {
         if (!isApproved && this.status.equals(OrderStatus.APPROVED)) {
             throw new ApprovedOrderCannotBeRejectedException();
         }
+    }
+
+    public static Order newOrder() {
+        Order order = new Order();
+        order.setStatus(OrderStatus.CREATED);
+        order.setCurrency("EUR");
+        return order;
     }
 }
