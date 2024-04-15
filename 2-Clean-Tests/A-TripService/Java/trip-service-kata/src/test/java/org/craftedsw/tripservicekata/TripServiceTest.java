@@ -5,6 +5,7 @@ import org.craftedsw.tripservicekata.trip.Trip;
 import org.craftedsw.tripservicekata.trip.TripService;
 import org.craftedsw.tripservicekata.user.User;
 import org.craftedsw.tripservicekata.user.UserSession;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,5 +31,19 @@ class TripServiceTest {
         when(userSession.getLoggedUser()).thenReturn(null);
         //Act Assert
         assertThrows(UserNotLoggedInException.class, () -> service.getTripsByUser(new User()));
+    }
+
+    @Test
+    void getTripsByUser_whenLoggedUserHasNoFriend_isEmpty() {
+        //Arrange
+        User searchedUser = new User();
+        User userLoggedIn = new User();
+        when(userSession.getLoggedUser()).thenReturn(userLoggedIn);
+
+        //Act
+        List<Trip> trips = service.getTripsByUser(searchedUser);
+
+        //Assert
+        Assertions.assertEquals(0, trips.size());
     }
 }
