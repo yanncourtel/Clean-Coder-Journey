@@ -1,0 +1,7 @@
+org\craftedsw\tripservicekata\user\UserSession.class
+org\craftedsw\tripservicekata\trip\TripService.class
+org\craftedsw\tripservicekata\user\User.class
+org\craftedsw\tripservicekata\exception\CollaboratorCallException.class
+org\craftedsw\tripservicekata\trip\TripDAO.class
+org\craftedsw\tripservicekata\exception\UserNotLoggedInException.class
+org\craftedsw\tripservicekata\trip\Trip.class
